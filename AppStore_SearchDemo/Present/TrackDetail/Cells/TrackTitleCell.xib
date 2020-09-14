@@ -103,7 +103,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jyw-tr-csx" customClass="CosmosView" customModule="Cosmos">
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jyw-tr-csx" customClass="CosmosView" customModule="Cosmos">
                                                         <rect key="frame" x="34.5" y="10" width="92" height="20"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -212,6 +212,7 @@
                 <outlet property="appCategoryLabel" destination="T5K-ef-Eyv" id="wwj-cu-DBG"/>
                 <outlet property="contentAdvisoryRatingLabel" destination="vzS-D3-12c" id="uVr-o3-QkM"/>
                 <outlet property="downloadButton" destination="JyS-c9-PZr" id="Huz-mm-A5Y"/>
+                <outlet property="gradeLabel" destination="6pc-zu-9kf" id="GDW-wx-2ab"/>
                 <outlet property="ratingLabel" destination="oe5-Cl-SdD" id="LwJ-Hd-LKJ"/>
                 <outlet property="ratingStarView" destination="jyw-tr-csx" id="UZV-Qa-nmD"/>
                 <outlet property="sellerLabel" destination="uDX-eA-NKK" id="n3M-ke-0ny"/>

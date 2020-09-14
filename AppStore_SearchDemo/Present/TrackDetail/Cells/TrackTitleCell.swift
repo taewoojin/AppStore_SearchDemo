@@ -32,6 +32,13 @@ class TrackTitleCell: ExpandableTableViewCell {
         }
     }
     
+    @IBOutlet weak var gradeLabel: UILabel! {
+        didSet {
+            gradeLabel.font = UIFont.preferredFont(for: .subheadline, weight: .regular)
+            gradeLabel.textColor = .lightGray
+        }
+    }
+    
     @IBOutlet weak var downloadButton: UIButton! {
         didSet {
             downloadButton.setTitleColor(.white, for: .normal)
@@ -44,9 +51,25 @@ class TrackTitleCell: ExpandableTableViewCell {
     
     @IBOutlet weak var contentAdvisoryRatingLabel: UILabel!
     
-    @IBOutlet weak var appCategoryLabel: UILabel!
+    @IBOutlet weak var appCategoryNumberLabel: UILabel! {
+        didSet {
+            appCategoryNumberLabel.textColor = .lightGray
+        }
+    }
     
-    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var appCategoryLabel: UILabel! {
+        didSet {
+            appCategoryLabel.font = UIFont.preferredFont(for: .subheadline, weight: .regular)
+            appCategoryLabel.textColor = .lightGray
+        }
+    }
+    
+    @IBOutlet weak var ratingLabel: UILabel! {
+        didSet {
+            ratingLabel.font = UIFont.preferredFont(for: .subheadline, weight: .regular)
+            ratingLabel.textColor = .lightGray
+        }
+    }
     
     @IBOutlet weak var ratingStarView: CosmosView!
     
@@ -73,7 +96,7 @@ class TrackTitleCell: ExpandableTableViewCell {
         contentAdvisoryRatingLabel.text = track.contentAdvisoryRating
         
         ratingStarView.rating = track.averageUserRatingForCurrentVersion ?? 0
-        ratingLabel.text = "\(track.userRatingCountForCurrentVersion)"
+        ratingLabel.text = "\(track.userRatingCountForCurrentVersion.convertedRating)개의 평가"
         
         appCategoryLabel.text = track.genres.first
     }

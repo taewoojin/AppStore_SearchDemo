@@ -35,6 +35,13 @@ class SearchResultCell: UITableViewCell {
     
     @IBOutlet weak var ratingStarView: CosmosView!
     
+    @IBOutlet weak var ratingLabel: UILabel! {
+        didSet {
+            ratingLabel.font = UIFont.preferredFont(for: .caption1, weight: .regular)
+            ratingLabel.textColor = .lightGray
+        }
+    }
+    
     @IBOutlet weak var downloadButton: UIButton! {
         didSet {
             downloadButton.layer.cornerRadius = 14
@@ -78,7 +85,7 @@ class SearchResultCell: UITableViewCell {
         subTitleLabel.text = track.sellerName
         
         ratingStarView.rating = track.averageUserRatingForCurrentVersion ?? 0
-        ratingStarView.text = "\(track.userRatingCountForCurrentVersion)"
+        ratingLabel.text = track.userRatingCountForCurrentVersion.convertedRating
         
         let screenShotSubviews = screenShotStackView.subviews.map { $0 as? UIImageView }
         for (index, imageView) in screenShotSubviews.enumerated() {

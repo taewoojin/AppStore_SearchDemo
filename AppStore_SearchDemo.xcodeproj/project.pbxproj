@@ -52,6 +52,7 @@
 		745FB869250F711C00EAA985 /* TrackDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745FB868250F711C00EAA985 /* TrackDetailItem.swift */; };
 		745FB86B250F715B00EAA985 /* TrackInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745FB86A250F715B00EAA985 /* TrackInfoItem.swift */; };
 		746AD8E6250FA9D500F974C7 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746AD8E5250FA9D500F974C7 /* Array+Extensions.swift */; };
+		746AD8E8250FB97400F974C7 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746AD8E7250FB97400F974C7 /* Int+Extensions.swift */; };
 		AD323B817DEECF72FFC2DD8F /* Pods_AppStore_SearchDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB47CB7E3C229E3836900AE /* Pods_AppStore_SearchDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +116,7 @@
 		745FB868250F711C00EAA985 /* TrackDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetailItem.swift; sourceTree = "<group>"; };
 		745FB86A250F715B00EAA985 /* TrackInfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackInfoItem.swift; sourceTree = "<group>"; };
 		746AD8E5250FA9D500F974C7 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		746AD8E7250FB97400F974C7 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		8DB47CB7E3C229E3836900AE /* Pods_AppStore_SearchDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppStore_SearchDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97383C6D660D802F9378952B /* Pods-AppStore_SearchDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStore_SearchDemo.debug.xcconfig"; path = "Target Support Files/Pods-AppStore_SearchDemo/Pods-AppStore_SearchDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		A0D84747996AE1AD7F7111D5 /* Pods-AppStore_SearchDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStore_SearchDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-AppStore_SearchDemoTests/Pods-AppStore_SearchDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				742EDC04250A2F8200CA4868 /* Date+Extensions.swift */,
 				745FB850250E006500EAA985 /* String+Extensions.swift */,
 				746AD8E5250FA9D500F974C7 /* Array+Extensions.swift */,
+				746AD8E7250FB97400F974C7 /* Int+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				741EA9D125076EA8002DACB7 /* LatestHistoryCell.swift in Sources */,
 				742EDC05250A2F8200CA4868 /* Date+Extensions.swift in Sources */,
 				741EA9AE25075AA3002DACB7 /* MainSearchViewController.swift in Sources */,
+				746AD8E8250FB97400F974C7 /* Int+Extensions.swift in Sources */,
 				741EA9CD25076997002DACB7 /* SearchTermCell.swift in Sources */,
 				741EA9D82507BC97002DACB7 /* Constant.swift in Sources */,
 				741EA9D62507B4B1002DACB7 /* NetworkManager.swift in Sources */,

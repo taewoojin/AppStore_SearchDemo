@@ -150,6 +150,18 @@ extension TrackDetailViewController: UITableViewDelegate, UITableViewDataSource 
             self.items[indexPath.section].isExpand = true
             tableView.reloadRows(at: [indexPath], with: .fade)
             
+        case .info:
+            let infoItem = infoItems[indexPath.row]
+            switch infoItem.type {
+            case .devWebSite:
+                if let urlString = track?.artistViewUrl,
+                    let url = URL(string: urlString) {
+                    UIApplication.shared.open(url, options: [:])
+                }
+                
+            default: break
+            }
+            
         default: break
         }
     }

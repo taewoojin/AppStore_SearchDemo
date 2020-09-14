@@ -86,10 +86,17 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16z-lc-h6p">
+                                                                <rect key="frame" x="65" y="-2.5" width="42" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PFp-wz-BF3" secondAttribute="trailing" constant="10" id="JE1-vo-c2T"/>
+                                                            <constraint firstItem="16z-lc-h6p" firstAttribute="centerY" secondItem="PFp-wz-BF3" secondAttribute="centerY" id="JTw-FL-m7k"/>
+                                                            <constraint firstItem="16z-lc-h6p" firstAttribute="leading" secondItem="PFp-wz-BF3" secondAttribute="trailing" constant="4" id="YtY-Gn-aN1"/>
                                                             <constraint firstItem="PFp-wz-BF3" firstAttribute="leading" secondItem="lrS-6h-wOo" secondAttribute="leading" id="byI-rk-cwa"/>
                                                             <constraint firstItem="PFp-wz-BF3" firstAttribute="centerY" secondItem="lrS-6h-wOo" secondAttribute="centerY" id="hI8-R7-xHG"/>
                                                             <constraint firstAttribute="height" constant="15" id="i5m-yw-dJw"/>
@@ -203,6 +210,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="downloadButton" destination="LbG-KU-l9Y" id="2nG-DM-zgZ"/>
+                <outlet property="ratingLabel" destination="16z-lc-h6p" id="MII-xb-l8R"/>
                 <outlet property="ratingStarView" destination="PFp-wz-BF3" id="FwX-ij-MEa"/>
                 <outlet property="screenShotRatio" destination="PqP-9C-KcT" id="SQ9-ow-hLG"/>
                 <outlet property="screenShotStackView" destination="2q6-iU-Nft" id="Ahy-EN-Dih"/>
