@@ -46,6 +46,7 @@
                             <constraint firstAttribute="trailing" secondItem="4ew-dz-TQP" secondAttribute="trailing" id="Xi8-UE-puu"/>
                             <constraint firstItem="4ew-dz-TQP" firstAttribute="centerY" secondItem="u4l-Bb-7HA" secondAttribute="centerY" id="dyS-YL-GNM"/>
                             <constraint firstAttribute="bottom" secondItem="NTd-sP-1Fz" secondAttribute="bottom" id="etf-3z-qee"/>
+                            <constraint firstItem="4ew-dz-TQP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="u4l-Bb-7HA" secondAttribute="trailing" constant="50" id="mul-5B-fsm"/>
                             <constraint firstItem="NTd-sP-1Fz" firstAttribute="top" secondItem="u4l-Bb-7HA" secondAttribute="bottom" constant="10" id="psd-fY-wq0"/>
                             <constraint firstItem="u4l-Bb-7HA" firstAttribute="leading" secondItem="etk-NN-PvQ" secondAttribute="leading" id="sqn-8t-VdK"/>
                         </constraints>

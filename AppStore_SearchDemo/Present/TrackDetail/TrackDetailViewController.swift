@@ -10,101 +10,9 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-enum TrackDetailItemType {
-    case title
-    case releaseNote
-    case description
-    case info
-    case preview
-    
-    func makeTableHeaderView(tableView: UITableView) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 50))
-        let titleLabel = UILabel().then {
-            $0.font = UIFont.preferredFont(for: .title2, weight: .semibold)
-        }
-        
-        headerView.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(20)
-            $0.top.equalToSuperview().offset(10)
-            $0.bottom.equalToSuperview().offset(-10)
-        }
-        
-        switch self {
-        case .preview:
-            titleLabel.text = "미리보기"
-            return headerView
-            
-        case .info:
-            titleLabel.text = "정보"
-            return headerView
-            
-        default: return nil
-        }
-    }
-}
-
-struct TrackDetailItem {
-    var type: TrackDetailItemType
-    var cellIdentifier: String
-    var isExpand: Bool
-}
-
-enum TrackInfoItemType {
-    case seller
-    case appSize
-    case category
-    case compatible
-    case lang
-    case grade
-    case copyright
-    case devWebSite
-    case privacyPolicy
-    
-    var title: String {
-        switch self {
-        case .seller: return "제공자"
-        case .appSize: return "크기"
-        case .category: return "카테고리"
-        case .compatible: return "호환성"
-        case .lang: return "언어"
-        case .grade: return "연령 등급"
-        case .copyright: return "저작권"
-        case .devWebSite: return "개발자 웹 사이트"
-        case .privacyPolicy: return "개인정보 처리방침"
-        }
-    }
-}
-
-struct TrackInfoItem {
-    var type: TrackInfoItemType
-    var isExpandable: Bool
-    var isExpand: Bool? = nil
-}
 
 class TrackDetailViewController: UIViewController {
 
-    var items: [TrackDetailItem] = [
-        .init(type: .title, cellIdentifier: "TrackTitleCell", isExpand: true),
-        .init(type: .releaseNote, cellIdentifier: "ReleaseNoteCell", isExpand: false),
-        .init(type: .preview, cellIdentifier: "PreviewCell", isExpand: true),
-        .init(type: .description, cellIdentifier: "TrackDescCell", isExpand: false),
-        .init(type: .info, cellIdentifier: "TrackInfoCell", isExpand: true)
-    ]
-    
-    var infoItems: [TrackInfoItem] = [
-        .init(type: .seller, isExpandable: false),
-        .init(type: .appSize, isExpandable: false),
-        .init(type: .category, isExpandable: true, isExpand: false),
-        .init(type: .compatible, isExpandable: true, isExpand: false),
-        .init(type: .lang, isExpandable: false),
-        .init(type: .grade, isExpandable: true, isExpand: false),
-        .init(type: .copyright, isExpandable: false),
-        .init(type: .devWebSite, isExpandable: false),
-        .init(type: .privacyPolicy, isExpandable: false)
-        
-    ]
-    
     lazy var tableView = UITableView(frame: .zero, style: .grouped).then {
         $0.delegate = self
         $0.dataSource = self
@@ -124,6 +32,28 @@ class TrackDetailViewController: UIViewController {
     
     var disposeBag = DisposeBag()
     
+    /// tableView의 섹션을 구성하는 리스트
+    var items: [TrackDetailItem] = [
+        .init(type: .title, cellIdentifier: "TrackTitleCell", isExpand: true),
+        .init(type: .releaseNote, cellIdentifier: "ReleaseNoteCell", isExpand: false),
+        .init(type: .preview, cellIdentifier: "PreviewCell", isExpand: true),
+        .init(type: .description, cellIdentifier: "TrackDescCell", isExpand: false),
+        .init(type: .info, cellIdentifier: "TrackInfoCell", isExpand: true)
+    ]
+    
+    /// TrackDetailItem의 type 값이 .info인 섹션을 구성하는 리스트
+    var infoItems: [TrackInfoItem] = [
+        .init(type: .seller, isExpandable: false),
+        .init(type: .appSize, isExpandable: false),
+        .init(type: .category, isExpandable: true, isExpand: false),
+        .init(type: .compatible, isExpandable: true, isExpand: false),
+        .init(type: .lang, isExpandable: false),
+        .init(type: .grade, isExpandable: true, isExpand: false),
+        .init(type: .copyright, isExpandable: false),
+        .init(type: .devWebSite, isExpandable: false),
+        .init(type: .privacyPolicy, isExpandable: false)
+    ]
+    
     
     init(track: Track) {
         self.track = track
@@ -136,8 +66,6 @@ class TrackDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationController?.navigationBar.backItem?.title = "검색"
         
         layout()
         bind()
@@ -207,8 +135,8 @@ extension TrackDetailViewController: UITableViewDelegate, UITableViewDataSource 
         case .info:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TrackInfoCell", for: indexPath) as! TrackInfoCell
             cell.infoItem = infoItems[indexPath.row]
+            cell.track = self.track
             cell.separatorView.isHidden = indexPath.row >= infoItems.count - 1
-            
             return cell
             
         }

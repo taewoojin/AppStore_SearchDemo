@@ -116,7 +116,7 @@ extension ScreenshotViewController : UIScrollViewDelegate {
         let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
         var roundedIndex = round(index)
         
-        // 마지막 item일 경우에는 이 부분을 지나가야 함.
+        // 마지막 item일 경우에는 이 부분을 통과해야 함.
         if imageUrls.count != Int(roundedIndex) + 1 {
             
             // scrollView, targetContentOffset의 좌표 값으로 스크롤 방향을 알 수 있다.

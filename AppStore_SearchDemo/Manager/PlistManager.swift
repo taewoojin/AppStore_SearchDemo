@@ -36,15 +36,17 @@ struct PlistManager {
         return dict?[key]
     }
     
-    func appendQuery(key: PlistKey, query: String) {
-        guard var recentQuery = readProperty(with: key.rawValue) as? [String] else { return }
+    func appendQuery(key: PlistKey, query: String) -> [String] {
+        guard var recentQuery = readProperty(with: key.rawValue) as? [String] else { return [] }
         
-        guard !recentQuery.contains(query) else { return }
+        guard !recentQuery.contains(query) else { return recentQuery }
         
         recentQuery.append(query)
 
         let dict = NSMutableDictionary(contentsOfFile: path)
         dict?.setObject(recentQuery, forKey: key.rawValue as NSCopying)
         dict?.write(toFile: path, atomically: false)
+        
+        return recentQuery
     }
 }

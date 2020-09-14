@@ -72,7 +72,7 @@ class TrackTitleCell: ExpandableTableViewCell {
         
         contentAdvisoryRatingLabel.text = track.contentAdvisoryRating
         
-        ratingStarView.rating = track.averageUserRatingForCurrentVersion
+        ratingStarView.rating = track.averageUserRatingForCurrentVersion ?? 0
         ratingLabel.text = "\(track.userRatingCountForCurrentVersion)"
         
         appCategoryLabel.text = track.genres.first

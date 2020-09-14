@@ -11,13 +11,13 @@ import RxSwift
 
 
 protocol TrackServiceProtocol {
-    func fetchTrack(searchText: String) -> Observable<ResultTrack>
+    func fetchTrack(searchText: String) -> Observable<ResultTrack?>
 }
 
 class TrackService: TrackServiceProtocol {
     let repository: TrackRepositoryProtocol = TrackRepository()
     
-    func fetchTrack(searchText: String) -> Observable<ResultTrack> {
+    func fetchTrack(searchText: String) -> Observable<ResultTrack?> {
         return repository.fetchTrack(searchText: searchText)
     }
 }

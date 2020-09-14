@@ -72,7 +72,6 @@ class ReleaseNoteCell: ExpandableTableViewCell {
             return _isExpand
         }
         set {
-            print("ReleaseNoteCell isExpand: \(newValue)")
             _isExpand = newValue
         }
     }
@@ -82,30 +81,49 @@ class ReleaseNoteCell: ExpandableTableViewCell {
         selectionStyle = .none
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-//        print("ReleaseNoteCell setSelected: \(selected)")
-    }
-    
     func setData() {
         guard let track = self.track else { return }
         
         versionLabel.text = "버전 \(track.version)"
-        
-        let currentVersionReleaseDate = Date.dateFromISOString(string: track.currentVersionReleaseDate)!
-        releaseDateLabel.text = Date.stringFromDate(date: currentVersionReleaseDate, formatString: "yyyy.MM.dd")
-//        let currentDate = Calendar.current.dateComponents([.day, .weekday, .month, .year], from: Date())
-//        let releaseDate = Calendar.current.dateComponents([.day, .weekday, .month, .year], from: currentVersionReleaseDate)
-        
         releaseNoteTextView.text = track.releaseNotes
+        
+        if let releaseDate = Date.dateFromISOString(string: track.currentVersionReleaseDate) {
+            let todayComponent = Calendar.current.dateComponents(
+                [.calendar , .year, .month, .day, .hour, .minute, .second],
+                from: Date()
+            )
+
+            let releaseDateComponent = Calendar.current.dateComponents(
+                [.calendar , .year, .month, .day, .hour, .minute, .second],
+                from: releaseDate
+            )
+
+            let diffDateComponent = Calendar.current.dateComponents(
+                [.calendar , .year, .month, .day, .hour, .minute, .second],
+                from: todayComponent,
+                to: releaseDateComponent
+            )
+            
+            if diffDateComponent.year! < 0 {
+                releaseDateLabel.text = "\(-diffDateComponent.year!)년 전"
+            } else if diffDateComponent.month! < 0 {
+                releaseDateLabel.text = "\(-diffDateComponent.month!)개월 전"
+            } else if diffDateComponent.day! < 0 {
+                releaseDateLabel.text = "\(-diffDateComponent.day!)일 전"
+            } else if diffDateComponent.hour! < 0 {
+                releaseDateLabel.text = "\(-diffDateComponent.month!)시간 전"
+            } else if diffDateComponent.minute! < 0 {
+                releaseDateLabel.text = "\(-diffDateComponent.month!)분 전"
+            } else {
+                releaseDateLabel.text = "\(-diffDateComponent.month!)초 전"
+            }
+        }
+        
     }
     
     func expand () {
         self.releaseNoteTextView.textContainer.maximumNumberOfLines = _isExpand ? 0 : 3
         viewMoreButton.isHidden = _isExpand
-            
-//        self.setNeedsLayout()
-//        self.layoutIfNeeded()
     }
 
 }

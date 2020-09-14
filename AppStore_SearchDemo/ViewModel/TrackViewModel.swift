@@ -19,7 +19,7 @@ struct TrackViewModel {
     }
     
     struct State {
-        let fetchedTrackResponse = PublishRelay<ResultTrack>()
+        let fetchedTrackResponse = PublishRelay<ResultTrack?>()
         let selectedQueryResponse = PublishRelay<String>()
         let isPlayingIndicator = BehaviorRelay<Bool>(value: false)
     }

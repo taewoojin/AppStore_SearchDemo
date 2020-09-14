@@ -100,7 +100,7 @@ class SearchResultViewController: UIViewController {
                 self?.indicatorView.stopAnimating()
             })
             .subscribe(onNext: { [weak self] result in
-                self?.tracks = result.results ?? []
+                self?.tracks = result?.results ?? []
             })
             .disposed(by: disposeBag)
         
@@ -117,7 +117,9 @@ class SearchResultViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
+    
 }
+
 
 extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -134,6 +136,5 @@ extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource
         let trackDetailVC = TrackDetailViewController(track: self.tracks[indexPath.row])
         navigationController?.pushViewController(trackDetailVC, animated: true)
     }
-    
     
 }

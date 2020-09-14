@@ -81,10 +81,6 @@ extension PreviewCell: UICollectionViewDataSource, UICollectionViewDelegate, UIC
         presentViewModel?.action.presentViewController.accept(navigationController)
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//    }
-    
 }
 
 extension PreviewCell : UIScrollViewDelegate {
@@ -100,13 +96,6 @@ extension PreviewCell : UIScrollViewDelegate {
         var offset = targetContentOffset.pointee
         let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
         var roundedIndex = round(index)
-        
-        
-        print("index: \(index)")
-        print("roundedIndex: \(roundedIndex)")
-        print("layout.itemSize: \(layout.itemSize)")
-        print("scrollView.contentOffset: \(scrollView.contentOffset.x)")
-        print("targetContentOffset.pointee.x: \(targetContentOffset.pointee.x)")
         
         // 마지막 item일 경우에는 이 부분을 지나가야 함.
         if screenshotUrls.count != Int(roundedIndex) + 1 {

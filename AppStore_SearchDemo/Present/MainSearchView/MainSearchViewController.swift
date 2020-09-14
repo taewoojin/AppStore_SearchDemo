@@ -36,7 +36,7 @@ class MainSearchViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if let recentQuery = PlistManager.shared.readProperty(with: "recentQuery") as? [String] {
-            self.recentQueries = recentQuery.sorted().reversed()
+            self.recentQueries = recentQuery.reversedElement
         }
     }
     
@@ -48,38 +48,28 @@ class MainSearchViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
         
-//        navigationController?.navigationBar.isTranslucent = false
-        
-//        tableView.separatorStyle = .none
-//        tableView.tableHeaderView = createHeader(title: "최근 검색어")
-//        tableView.tableFooterView = UIView(frame: .zero)
-        
-//        self.extendedLayoutIncludesOpaqueBars = true
-//        self.edgesForExtendedLayout = .all
-//        self.definesPresentationContext = true
-        
-        let titleItem = UIBarButtonItem(title: "검색", style: .plain, target: nil, action: nil)
-        titleItem.tintColor = .black
-        titleItem.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 30, weight: .bold)], for: .normal)
-        navigationItem.leftBarButtonItem = titleItem
-        
         searchTableViewController = storyboard!.instantiateViewController(withIdentifier: "SearchTableViewController") as? SearchTableViewController
         searchTableViewController.viewModel = self.viewModel
         
         searchController = UISearchController(searchResultsController: searchTableViewController)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "App Store"
-//        searchController.searchBar.scopeButtonTitles = Year.allCases.map { $0.description }
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
-//        searchController.automaticallyShowsScopeBar = false
         searchController.searchBar.searchTextField.textColor = .black
         searchController.searchBar.searchTextField.tokenBackgroundColor = .systemYellow
-//        searchController.hidesNavigationBarDuringPresentation = false
-//        searchController.delegate = self
-        
+
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.titleView?.isHidden = true
+        
+        let titleItem = UIBarButtonItem(title: "검색", style: .plain, target: nil, action: nil)
+        titleItem.tintColor = .black
+        titleItem.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 30, weight: .bold)], for: .normal)
+        navigationItem.leftBarButtonItem = titleItem
+        
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.clear]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
         
         registerForKeyboardNotifications(scrollView: tableView, disposeBag: disposeBag)
         initSearchResultViewController()
@@ -87,16 +77,12 @@ class MainSearchViewController: UIViewController {
     }
 
     private func bind() {
-        
         viewModel.state.selectedQueryResponse
             .subscribe(onNext: { [weak self] query in
                 self?.searchController.searchBar.text = query
-                print("query: \(query)")
                 self?.searchController.searchBar.endEditing(true)
-//                self?.searchResult(query)
             })
             .disposed(by: disposeBag)
-        
     }
     
     private func initSearchResultViewController() {
@@ -112,19 +98,23 @@ class MainSearchViewController: UIViewController {
         
         searchResultVC?.view.isHidden = true
     }
+    
+    func searchResult(_ searchText: String?) {
+        searchController.showsSearchResultsController = false
+        searchResultVC?.view.isHidden = false
+        searchResultVC?.searchText = searchText
+    }
 }
 
 
 extension MainSearchViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recentQueries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "LatestHistoryCell") as? LatestHistoryCell else {
-            return UITableViewCell()
-        }
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LatestHistoryCell") as! LatestHistoryCell
         cell.query = recentQueries[indexPath.row]
         return cell
     }
@@ -142,6 +132,7 @@ extension MainSearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         searchController.isActive = true
         searchController.searchBar.text = query
+//        searchController.searchBar.endEditing(true)
         searchResult(query)
     }
     
@@ -172,12 +163,10 @@ extension MainSearchViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        PlistManager.shared.appendQuery(key: PlistKey.recentQuery, query: searchBar.text!)
+        self.recentQueries = PlistManager.shared.appendQuery(key: PlistKey.recentQuery, query: searchBar.text!).reversedElement
     }
     
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        print("replacementText: \(text)")
-        
         /// searchText 변경이 생길때
         searchController.showsSearchResultsController = true
         searchResultVC?.view.isHidden = true
@@ -186,8 +175,6 @@ extension MainSearchViewController: UISearchBarDelegate {
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-        print("searchBarShouldEndEditing: \(searchBar.text)")
-        
         if !(searchBar.text!.isEmpty) {
             searchResult(searchBar.text)
         }
@@ -207,8 +194,6 @@ extension MainSearchViewController: UISearchResultsUpdating {
             searchController.showsSearchResultsController = true
             searchResultVC?.view.isHidden = false
         }
-        
-        print("updateSearchResult: \(searchController.searchBar.text!)")
 
         searchFor(searchController.searchBar.text)
     }
@@ -224,31 +209,5 @@ extension MainSearchViewController: UISearchResultsUpdating {
         let filteredQueries = recentQueries.filter { $0.contains(searchText) }
         
         searchTableViewController.filteredQueries = filteredQueries
-    }
-}
-
-extension MainSearchViewController {
-    func searchResult(_ searchText: String?) {
-        searchController.showsSearchResultsController = false
-        searchResultVC?.view.isHidden = false
-        
-        searchResultVC?.searchText = searchText
-        print("searchResult: \(searchText)")
-    }
-}
-
-
-extension MainSearchViewController: UISearchControllerDelegate {
-    
-    func didPresentSearchController(_ searchController: UISearchController) {
-        navigationController?.navigationBar.isTranslucent = true
-    }
-    
-//    func willPresentSearchController(_ searchController: UISearchController) {
-//        navigationController?.navigationBar.isTranslucent = true
-//    }
-    
-    func willDismissSearchController(_ searchController: UISearchController) {
-        navigationController?.navigationBar.isTranslucent = false
     }
 }

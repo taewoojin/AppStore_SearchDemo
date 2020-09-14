@@ -77,7 +77,7 @@ class SearchResultCell: UITableViewCell {
         
         subTitleLabel.text = track.sellerName
         
-        ratingStarView.rating = track.averageUserRatingForCurrentVersion
+        ratingStarView.rating = track.averageUserRatingForCurrentVersion ?? 0
         ratingStarView.text = "\(track.userRatingCountForCurrentVersion)"
         
         let screenShotSubviews = screenShotStackView.subviews.map { $0 as? UIImageView }

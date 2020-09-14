@@ -26,13 +26,14 @@ class TrackInfoCell: ExpandableTableViewCell {
     var track: Track? {
         didSet {
             guard let track = track else { return }
-            
+            valueLabel.text = infoItem?.type.fetchValue(from: track)
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        selectionStyle = .none
     }
     
 }

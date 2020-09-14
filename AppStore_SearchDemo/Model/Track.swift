@@ -21,38 +21,38 @@ struct Track: Decodable {
     var artworkUrl100: String
     var artistViewUrl: String
     var isGameCenterEnabled: Bool
-    var kind: String
-    var currency: String
-    var trackCensoredName: String
+    var kind: String?
+    var currency: String?
+    var trackCensoredName: String?
     var languageCodesISO2A: [String]
     var fileSizeBytes: String
     var sellerUrl: String?
-    var contentAdvisoryRating: String
-    var averageUserRatingForCurrentVersion: Double
+    var contentAdvisoryRating: String?
+    var averageUserRatingForCurrentVersion: Double?
     var userRatingCountForCurrentVersion: Int
-    var averageUserRating: Double
-    var trackViewUrl: String
-    var trackContentRating: String
-    var trackId: Int64
-    var trackName: String
-    var isVppDeviceBasedLicensingEnabled: Bool
-    var releaseDate: String
-    var primaryGenreName: String
-    var minimumOsVersion: String
-    var genreIds: [String]
-    var formattedPrice: String
+    var averageUserRating: Double?
+    var trackViewUrl: String?
+    var trackContentRating: String?
+    var trackId: Int64?
+    var trackName: String?
+    var isVppDeviceBasedLicensingEnabled: Bool?
+    var releaseDate: String?
+    var primaryGenreName: String?
+    var minimumOsVersion: String?
+    var genreIds: [String]?
+    var formattedPrice: String?
     var currentVersionReleaseDate: String
     var releaseNotes: String?
     var primaryGenreId: Int
     var sellerName: String
     var version: String
-    var wrapperType: String
-    var artistId: Int64
-    var artistName: String
+    var wrapperType: String?
+    var artistId: Int64?
+    var artistName: String?
     var genres: [String]
-    var price: Double
-    var description: String
-    var bundleId: String
-    var userRatingCount: Int
+    var price: Double?
+    var description: String?
+    var bundleId: String?
+    var userRatingCount: Int?
     
 }

@@ -49,6 +49,9 @@
 		745FB851250E006500EAA985 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745FB850250E006500EAA985 /* String+Extensions.swift */; };
 		745FB853250E60C500EAA985 /* ScreenshotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745FB852250E60C500EAA985 /* ScreenshotViewController.swift */; };
 		745FB855250E688500EAA985 /* PresentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745FB854250E688500EAA985 /* PresentViewModel.swift */; };
+		745FB869250F711C00EAA985 /* TrackDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745FB868250F711C00EAA985 /* TrackDetailItem.swift */; };
+		745FB86B250F715B00EAA985 /* TrackInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745FB86A250F715B00EAA985 /* TrackInfoItem.swift */; };
+		746AD8E6250FA9D500F974C7 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746AD8E5250FA9D500F974C7 /* Array+Extensions.swift */; };
 		AD323B817DEECF72FFC2DD8F /* Pods_AppStore_SearchDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB47CB7E3C229E3836900AE /* Pods_AppStore_SearchDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +112,9 @@
 		745FB850250E006500EAA985 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		745FB852250E60C500EAA985 /* ScreenshotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotViewController.swift; sourceTree = "<group>"; };
 		745FB854250E688500EAA985 /* PresentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentViewModel.swift; sourceTree = "<group>"; };
+		745FB868250F711C00EAA985 /* TrackDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetailItem.swift; sourceTree = "<group>"; };
+		745FB86A250F715B00EAA985 /* TrackInfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackInfoItem.swift; sourceTree = "<group>"; };
+		746AD8E5250FA9D500F974C7 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		8DB47CB7E3C229E3836900AE /* Pods_AppStore_SearchDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppStore_SearchDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97383C6D660D802F9378952B /* Pods-AppStore_SearchDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStore_SearchDemo.debug.xcconfig"; path = "Target Support Files/Pods-AppStore_SearchDemo/Pods-AppStore_SearchDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		A0D84747996AE1AD7F7111D5 /* Pods-AppStore_SearchDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStore_SearchDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-AppStore_SearchDemoTests/Pods-AppStore_SearchDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -215,6 +221,7 @@
 				743484112509E2A2006616B7 /* UIImageView+Extensions.swift */,
 				742EDC04250A2F8200CA4868 /* Date+Extensions.swift */,
 				745FB850250E006500EAA985 /* String+Extensions.swift */,
+				746AD8E5250FA9D500F974C7 /* Array+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -223,6 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				741EA9DA2507C7D6002DACB7 /* Track.swift */,
+				745FB868250F711C00EAA985 /* TrackDetailItem.swift */,
+				745FB86A250F715B00EAA985 /* TrackInfoItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -533,14 +542,17 @@
 				745FB845250CA75800EAA985 /* ExpandableTableViewCell.swift in Sources */,
 				742EDBFE250A0A6400CA4868 /* TrackTitleCell.swift in Sources */,
 				742EDBFB250A08C100CA4868 /* TrackDetailViewController.swift in Sources */,
+				745FB869250F711C00EAA985 /* TrackDetailItem.swift in Sources */,
 				745FB84D250D24BC00EAA985 /* ScreenshotCell.swift in Sources */,
 				742EDC02250A2AF900CA4868 /* ReleaseNoteCell.swift in Sources */,
 				741EA9CF25076AB8002DACB7 /* SearchTableViewController.swift in Sources */,
+				746AD8E6250FA9D500F974C7 /* Array+Extensions.swift in Sources */,
 				745FB855250E688500EAA985 /* PresentViewModel.swift in Sources */,
 				745FB848250D058000EAA985 /* PreviewCell.swift in Sources */,
 				7434840425092AD4006616B7 /* UIFont+Extensions.swift in Sources */,
 				745FB853250E60C500EAA985 /* ScreenshotViewController.swift in Sources */,
 				74348406250943CC006616B7 /* SearchResultViewController.swift in Sources */,
+				745FB86B250F715B00EAA985 /* TrackInfoItem.swift in Sources */,
 				741EA9EA25086754002DACB7 /* PlistManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

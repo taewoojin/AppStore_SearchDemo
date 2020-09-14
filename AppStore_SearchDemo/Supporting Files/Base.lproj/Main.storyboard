@@ -39,7 +39,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="검색" largeTitleDisplayMode="never" id="jjs-2C-cFP"/>
+                    <navigationItem key="navigationItem" title="검색" id="jjs-2C-cFP"/>
                     <connections>
                         <outlet property="tableView" destination="lve-Ek-6OA" id="Y8H-88-Req"/>
                     </connections>

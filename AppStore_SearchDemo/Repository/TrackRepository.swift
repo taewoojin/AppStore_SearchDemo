@@ -11,18 +11,17 @@ import RxSwift
 
 
 protocol TrackRepositoryProtocol {
-    func fetchTrack(searchText: String) -> Observable<ResultTrack>
+    func fetchTrack(searchText: String) -> Observable<ResultTrack?>
 }
 
 class TrackRepository: TrackRepositoryProtocol {
-    func fetchTrack(searchText: String) -> Observable<ResultTrack> {
+    func fetchTrack(searchText: String) -> Observable<ResultTrack?> {
         return NetworkManager.fetchData(
             model: ResultTrack.self,
             urlString: Constant.Domain.searchUrl,
             parameters: [
                 "media": "software",
                 "term": searchText.condenseWhitespaceToPlus,
-                "country": "kr",
                 "limit": "10"
             ]
         )
